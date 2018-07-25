@@ -2,13 +2,17 @@
   <form id="form" action="/signup" method="POST">
     <label for="username">Username</label><br>
     <input type="text" name="username"
-      placeholder="AnakinSkywalker">
+      placeholder=" Username ">
 
     <br><br>
     <label for="password">Password</label><br>
     <input type="password" name="password"
-      placeholder="DeathStar">
+      placeholder=" Password ">
     <br><br>
+
+    {{#if message}}
+      <div>{{message}}</div>
+    {{/if}}
 
     <button>Create account</button>
   </form>

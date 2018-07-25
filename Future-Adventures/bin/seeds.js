@@ -1,4 +1,4 @@
-const usersData = [
+const usersData = [{}
   // {
   //   name: '',
   //   lastname: '',
@@ -7,7 +7,7 @@ const usersData = [
   // }
 ];
 
-const adventuresData =[
+const adventuresData =[{}
   // {
   //   refname: '', // user name referenced
   //   name: '',
@@ -22,7 +22,7 @@ const mongoose = require('mongoose');
 const dbname = 'future-adventures';
 mongoose.connect(`mongodb://localhost/${dbname}`);
 
-const userCollection = require('../models/users');
+const userCollection = require('../models/user');
 userCollection.collection.drop();
 
 userCollection.create(usersData, (err) =>{
@@ -31,7 +31,7 @@ userCollection.create(usersData, (err) =>{
   mongoose.connection.close();
 });
 
-const adventuresCollection = require('../models/adventures');
+const adventuresCollection = require('../models/adventure');
 adventuresCollection.collection.drop();
 
 adventuresCollection.create(adventuresData, (err) =>{
@@ -42,3 +42,4 @@ adventuresCollection.create(adventuresData, (err) =>{
 
 
 // module.exports = userCollection;
+// module.exports = adventuresCollection;

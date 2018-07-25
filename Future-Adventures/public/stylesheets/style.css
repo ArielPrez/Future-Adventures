@@ -1,15 +1,20 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
 #form {
   margin: 30px auto;
-  width: 380px;
-}
+  width: 380px; }
 
 #form label {
   color: #666;
   display: inline-block;
   margin-bottom: 10px;
-  text-align: center;
-  width: 100%;
-}
+  text-align: left;
+  width: 150px; }
 
 #form input,
 #form button {
@@ -17,8 +22,11 @@
   font-size: 14px;
   outline: 0;
   padding: 4px;
-  width: 100%;
-}
+  width: 150px; }
+
+#form input :placeholder-shown {
+  font-size: 2px;
+  color: #00B7FF; }
 
 #form button {
   background: #43a3e6;
@@ -27,16 +35,16 @@
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-size: 14px;
-  padding: 8px 16px;
+  font-size: 10px;
+  padding: 10px 12px;
   text-decoration: none;
   text-transform: uppercase;
   transition: .3s ease background;
-  width: 100%;
-}
+  width: 120px; }
 
 #form button:hover {
   background: #fff;
   color: #43a3e6;
-  transition: .3s ease background;
-}
+  transition: .3s ease background; }
+
+/*# sourceMappingURL=style.css.map */
