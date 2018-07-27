@@ -1,19 +1,29 @@
 <div id="signup">
   <form id="form" action="/signup" method="POST">
-    <label for="username">Username</label><br>
+    {{!-- <label for="username">Username</label><br> --}}
+    <img id="user" src="/images/-abstract-user-icon-1.png" alt="">
+    <input type="text" name="name"
+      placeholder=" Name ">
+    <input type="text" name="lastname"
+      placeholder=" Lastname ">
     <input type="text" name="username"
       placeholder=" Username ">
 
-    <br><br>
-    <label for="password">Password</label><br>
+    
+    {{!-- <label for="password">Password</label><br> --}}
+    <img id="pass" src="/images/43118-200.png" alt="">
     <input type="password" name="password"
       placeholder=" Password ">
-    <br><br>
-
-    {{#if message}}
-      <div>{{message}}</div>
-    {{/if}}
+    
 
     <button>Create account</button>
+
+    {{#if message}}
+      <br>
+      <div id="mess">{{message}}</div>
+      <br>
+    {{/if}}
   </form>
+  
+
 </div>

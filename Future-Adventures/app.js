@@ -6,6 +6,10 @@ const express      = require('express');
 const favicon      = require('serve-favicon');
 const hbs          = require('hbs');
 const mongoose     = require('mongoose');
+const User         = require('./models/user');
+// DE AQUI PARA ABAJO LAS VARIABLES NO SE DE QUE SON
+
+//de aca
 const logger       = require('morgan');
 const path         = require('path');
 const session      = require('express-session');
@@ -13,6 +17,10 @@ const MongoStore   = require('connect-mongo')(session);
 const bcrypt        = require('bcrypt');
 const passport      = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+//hasta aca son puros paquetes de autenticacion y para mantener la sesion del usuario,
+// te recomendaria por lo menos leer las clases de autenticaciones despues del proyecto 
+// asi sabes mejor que son y para que
+
 // const user          = require('./models/user');
 const flash         = require('connect-flash');
 
@@ -21,9 +29,9 @@ mongoose.Promise = Promise;
 mongoose
   .connect(process.env.MONGODB_URI, {useMongoClient: true})
   .then(() => {
-    console.log('Connected to Mongo!')
+    console.log('Connected to Mongo!');
   }).catch(err => {
-    console.error('Error connecting to mongo', err)
+    console.error('Error connecting to mongo', err);
   });
 
 const app_name = require('./package.json').name;
@@ -31,7 +39,17 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 
 const app = express();
 
-// Middleware Setup
+/* Middleware Setup  
+no se si fuiste a una de las clases que dieron los middleware,
+ practicamente son pedazos de codigo que hacen cosas cuando los llamas en una ruta,
+ se pueden usar antes que todo el codigo dentro de la ruta o simplemente dentro de la ruta,
+ algunos de estos ni siquiera tienes que "llamarlos", funcionan solos.
+ Por ejemplo el "body parser", este funciona por si solo, te permite tomar la
+ informacion de los input en las planillas de login, sign up, etc.
+ En las rutas post los req no funcionan igual por eso es necesario*/
+
+//el glitch, eran las rutas login, logout, sign up, edit, delete
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -59,8 +77,8 @@ passport.deserializeUser((id, cb) => {
 
 app.use(flash());
 
-// Login local strategy
-passport.use(new LocalStrategy( { passReqToCallback: true }, (req, username, password, next) => {
+// Login local strategy --> ACA ESTA LA COMPROBACION DE PASSPORT Y SUS RESPECTIVOS MENSAJES!!!!
+passport.use("local-login", new LocalStrategy( { passReqToCallback: true }, (req, username, password, next) => {
   User.findOne({ username }, (err, user) => {
     if (err) {
       return next(err);
@@ -94,25 +112,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 //Confirm currentUser is logged in. 
-app.use((req, res, next) => {
-  if (req.session.currentUser) {
-    res.locals.currentUserInfo = req.session.currentUser;
-    res.locals.isUserLoggedIn = true;
-  } else {
-    res.locals.isUserLoggedIn = false;
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   if (req.session.currentUser) {
+//     res.locals.currentUserInfo = req.session.currentUser;
+//     res.locals.isUserLoggedIn = true;
+//   } else {
+//     res.locals.isUserLoggedIn = false;
+//   }
+//   next();
+// });
 
-hbs.registerHelper('ifUndefined', (value, options) => {
-  if (arguments.length < 2)
-      throw new Error('Handlebars Helper ifUndefined needs 1 parameter');
-  if (typeof value !== undefined ) {
-      return options.inverse(this);
-  } else {
-      return options.fn(this);
-  }
-});
+// hbs.registerHelper('ifUndefined', (value, options) => {
+//   if (arguments.length < 2)
+//       throw new Error('Handlebars Helper ifUndefined needs 1 parameter');
+//   if (typeof value !== undefined ) {
+//       return options.inverse(this);
+//   } else {
+//       return options.fn(this);
+//   }
+// });
 
 // hbs.registerPartials(_dirname + 'views/partials');
 
@@ -133,3 +151,6 @@ app.use('/users', usersRoute);
 app.use('/adventures', adventuresRoute);
 
 module.exports = app;
+
+
+// "dev": "DEBUG=future-adventures:* nodemon ./bin/www"
