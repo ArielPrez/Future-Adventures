@@ -1,25 +1,22 @@
 <div>
-  <form id="form" action="/login" method="POST">
-    {{!-- <label for="username">Username</label><br> --}}
-    <img src="/images/-abstract-user-icon-1.png" alt="">
-    <input type="text" name="username"
-      placeholder=" Username ">
-
-    
-    {{!-- <label for="password">Password</label><br> --}}
-    <img src="/images/43118-200.png" alt="">
-    <input type="password" name="password"
-      placeholder=" Password ">
-    
-
-    <button>Log-in</button>
-
-    {{#if message}}
-      <br>
-      <div id="mess">{{message}}</div>
-      <br>
-    {{/if}}
-  </form>
-  
+    <form id="form" action="/login" method="POST">
+        <div class="imglogo">
+            <img id="user" src="/images/-abstract-user-icon-1.png" alt="">
+            <img id="pass" src="/images/43118-200.png" alt="">
+        </div>
+        <div class="userinput">
+            {{!-- <label for="username">Username</label><br> --}}
+            <input type="text" name="username" placeholder=" Username ">
+            {{!-- <label for="password">Password</label><br> --}}
+            <input type="password" name="password" placeholder=" Password ">
+        </div>
+            <button class="btn btn-primary">Log-in</button>
+        
+        {{#if message}}
+            <br>
+            <div id="mess">{{message}}</div>
+            <br>
+        {{/if}}
+    </form>
 
 </div>

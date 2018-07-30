@@ -20,12 +20,13 @@ router.post("/signup", (req,res,next) => {
   // const lastname = req.body.lastname;
   // const username = req.body.username;
   // const password = req.body.password;
-
+//    ||     ||      ||      ||
+//    \/     \/      \/      \/
   const {username, password, name, lastname} = req.body;
   // console.log(username,password, ' <==== ');
 
-  if(username === '' || password === ''){
-    res.render('users/signup', {message: 'Write some Username and Password.'});
+  if (username === "" || password === "" || name === "" || lastname === "") {
+    res.render("users/signup", { message: "Please fill all inputs"});
     return;
   }
   User.findOne({username})
@@ -65,15 +66,12 @@ router.post('/login', passport.authenticate('local-login', {
   passReqToCallback: true
 }));
 
-router.get('/logout', (req,res) => {
-  req.logout();
-  req.session.destroy((err) => {
-    if(err){
-      next(err);
-      return;
-    }
-  });
-  res.redirect('/login');
-});
 
+//ODIO EL BACKEND att: Ariel 2018 - Present
+
+router.get('/logout', (req,res) => {
+    req.logout();
+    req.session.destroy();
+    res.redirect('/'); //<-- aqui es donde rediriges al url que tu quieras
+});
 module.exports = router;

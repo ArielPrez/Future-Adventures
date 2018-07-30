@@ -1,29 +1,24 @@
-<div id="signup">
-  <form id="form" action="/signup" method="POST">
-    {{!-- <label for="username">Username</label><br> --}}
-    <img id="user" src="/images/-abstract-user-icon-1.png" alt="">
-    <input type="text" name="name"
-      placeholder=" Name ">
-    <input type="text" name="lastname"
-      placeholder=" Lastname ">
-    <input type="text" name="username"
-      placeholder=" Username ">
+<div id="signupdiv">
+    <form id="form" action="/signup" method="POST">
+        <div class="imglogo">
+            <img id="user" src="/images/-abstract-user-icon-1.png" alt="">
+            <img id="pass" src="/images/43118-200.png" alt="">
+        </div>
+        <div class="userinput">
+            <input type="text" name="name" placeholder=" Name ">
+            <input type="text" name="lastname" placeholder=" Lastname ">
+            <input type="text" name="username" placeholder=" Username ">
+            <input type="password" name="password" placeholder=" Password ">
 
-    
-    {{!-- <label for="password">Password</label><br> --}}
-    <img id="pass" src="/images/43118-200.png" alt="">
-    <input type="password" name="password"
-      placeholder=" Password ">
-    
-
-    <button>Create account</button>
-
-    {{#if message}}
-      <br>
-      <div id="mess">{{message}}</div>
-      <br>
-    {{/if}}
-  </form>
-  
+        </div>
+        
+            <button class="btn btn-primary">Create account</button>
+        
+        {{#if message}}
+            <br>
+            <div id="mess">{{message}}</div>
+            <br>
+        {{/if}}
+    </form>
 
 </div>

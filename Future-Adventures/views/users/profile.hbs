@@ -1,0 +1,19 @@
+<div id="userprofile">
+    <div class="imglogo">
+        <h3>
+            {{user.username}}:
+        </h3>
+        <h3>{{user.name}}
+            {{user.lastname}}</h3>
+
+    </div>
+
+    <a href="/users/edit">
+        <button class="btn btn-primary">Edit</button>
+    </a>
+    <p>
+        <form action="/users/delete" method="post">
+            <button class="btn btn-primary" type="submit">Delete</button>
+        </form>
+    </p>
+</div>

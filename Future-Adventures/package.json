@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "ndb nodemon ./bin/www",
+    "start": "nodemon ./bin/www",
     "dev": "DEBUG=future-adventures:* nodemon ./bin/www"
   },
   "dependencies": {
