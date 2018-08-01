@@ -1,19 +1,25 @@
-<div id="userprofile">
-    <div class="imglogo">
-        <h3>
-            {{user.username}}:
-        </h3>
-        <h3>{{user.name}}
-            {{user.lastname}}</h3>
-
+<div id="userprofile" class="container">
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            <h3>Username: 
+                <p>[ {{user.username}} ]</p>
+            </h3>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <h3>{{user.name}}</h3>
+            </li>
+            <li class="list-group-item">
+                <h3>{{user.lastname}}</h3>
+            </li>
+            <li class="list-group-item">
+                <span><a href="/users/edit">
+                        <button class="btn btn-primary">Edit</button>
+                    </a><form action="/users/delete" method="post">
+                        <button class="btn btn-primary" type="submit">Delete</button>
+                    </form>
+                </span>
+            </li>
+        </ul>
     </div>
-
-    <a href="/users/edit">
-        <button class="btn btn-primary">Edit</button>
-    </a>
-    <p>
-        <form action="/users/delete" method="post">
-            <button class="btn btn-primary" type="submit">Delete</button>
-        </form>
-    </p>
 </div>

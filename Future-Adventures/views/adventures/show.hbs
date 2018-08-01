@@ -1,16 +1,21 @@
 <div id="show">
     <div class="textAdv">
         <span>{{user.name}}
-              {{user.lastname}}
+            {{user.lastname}}
         </span>
         <div class="advs">
             {{#each advs}}
                 <p>{{this.name}}</p>
                 <p>{{this.description}}</p>
                 <p>{{this.date}}</p>
-                <div class="edit">
-        <a href="/adventures/new" class="btn btn-primary">Edit</a>
-    </div>
+                <button class="btn btn-primary">
+                    <a href="/adventures/edit/{{this.id}}">Edit</a>
+                </button>
+
+                <form action="/adventures/delete/{{this.id}}" method="post">
+                    <input type="submit" value="Delete" class="btn btn-primary">
+                </form>
+
                 <p>#############################################################</p>
             {{/each}}
         </div>

@@ -1,20 +1,42 @@
-<div id="newadventure">
-    <br>
-                    <form action="/adventures/new" method="post">
-        <div class="nameAdv">
-            <label for="">Adventure Name</label>
-            <input name="name" type="text">
-            <label for="">Date  </label>
-            <input type="date" name="date" id="date">
-        </div>
+<div>
+    {{#if adv}}
+        <form action="/adventures/edit/{{adv.id}}" method="post">
+        {{else}}
+            <form action="/adventures/new" method="post">
+            {{/if}}
+            <div class="nameAdv">
+                <label for="">Adventure Name</label>
+                {{#if adv}}
+                    <input name="name" type="text" value="{{adv.name}}">
+                {{else}}
+                    <input name="name" type="text">
+                {{/if}}
 
-            <div class="textAdv">
-                <textarea name="description">"Add a New Adventure ..." 
+                <label for="">Date
+                </label>
+                {{#if adv}}
+                    <input type="date" name="date" id="date" value="{{adv.date}}"></div>
+            {{else}}
+                <input type="date" name="date" id="date"></div>
+        {{/if}}
+
+        <div class="textAdv">
+            {{#if adv}}
+                <textarea name="description">{{adv.description}}
                 </textarea>
-            </div>
-            <div class="textForm">
-                    <button class="btn btn-primary" type="submit">[ + ]</button>
-                </form>
-            </div>
+            {{else}}
+                <textarea name="description">"Add a New Adventure ..."
+                </textarea>
+            {{/if}}
 
         </div>
+        <div class="textForm">
+            <button class="btn btn-primary" type="submit">[ + ]</button>
+        </div>
+    </form>
+    {{#if message}}
+        <br>
+        <div id="mess">{{message}}</div>
+        <br>
+    {{/if}}
+</div>

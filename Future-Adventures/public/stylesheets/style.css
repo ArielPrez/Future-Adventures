@@ -87,8 +87,15 @@ img {
   margin: 20px 0 0 0;
   width: 90px; }
 
+.edit span {
+  display: inline-block;
+  float: left;
+  border: solid 1px #add; }
+
 .edit a {
-  margin: 0 0 0 400px;
+  display: inline-block;
+  float: left;
+  margin: 0 10px 0 350px;
   width: 90px; }
 
 textarea {
@@ -150,14 +157,6 @@ textarea:focus {
   display: inline-block;
   margin-bottom: 10px;
   text-align: left;
-  width: 150px; }
-
-#form input {
-  margin: 15px 10px 0 20px;
-  box-sizing: border-box;
-  font-size: 14px;
-  outline: 0;
-  padding: 4px;
   width: 150px; }
 
 .btn {

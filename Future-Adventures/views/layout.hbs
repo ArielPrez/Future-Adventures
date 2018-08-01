@@ -5,8 +5,7 @@
         <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
         <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet">
         <link rel='stylesheet' href='/stylesheets/style.css'/>
     </head>
@@ -32,41 +31,42 @@
                             <a href="/">Home</a>
                         </li>
                         {{#if user}}
-                         <li>
-                            <a href="/users/profile">Profile</a>
-                        </li>
-                                                
-                        <li>
-                            <a href="/adventures/show">Adventures</a>
-                        </li>
+                            <li>
+                                <a href="/users/profile">Profile</a>
+                            </li>
+
+                            <li>
+                                <a href="/adventures/show">Adventures</a>
+                            </li>
                         {{/if}}
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                      {{#if user}}
-                        <li> 
-                            <a href="/logout">
-                                <span class="glyphicon glyphicon-log-out"></span>
-                                Logout</a>
-                        </li>
-                      {{else}}
-                        <li>
-                            <a href="/signup">
-                                <span class="glyphicon glyphicon-arrow-up"></span>
-                                Signup</a>
-                        </li>
-                        <li>
-                            <a href="/login">
-                                <span class="glyphicon glyphicon-log-in"></span>
-                                Login</a>
-                        </li>
-                      {{/if}}
+                        {{#if user}}
+                            <li>
+                                <a href="/logout">
+                                    <span class="glyphicon glyphicon-log-out"></span>
+                                    Logout</a>
+                            </li>
+                        {{else}}
+                            <li>
+                                <a href="/signup">
+                                    <span class="glyphicon glyphicon-arrow-up"></span>
+                                    Signup</a>
+                            </li>
+                            <li>
+                                <a href="/login">
+                                    <span class="glyphicon glyphicon-log-in"></span>
+                                    Login</a>
+                            </li>
+                        {{/if}}
                     </ul>
                 </div>
             </div>
         </nav>
 
         {{{body}}}
-
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src='/javascripts/script.js'></script>
     </body>
 </html>

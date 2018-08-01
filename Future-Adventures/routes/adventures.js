@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Adventure = require('../models/adventure');
+const ensureLogin = require("connect-ensure-login");
 
 router.get('/new', (req, res, next) => {
     let userId = req.user;
@@ -14,6 +15,7 @@ router.post('/new', (req, res, next) => {
             user: refname,
             message: "Please fill all inputs"
         });
+        return;
     }
     const newAdventure = new Adventure({refname,name, description, date});
     newAdventure.save((err) => {
@@ -47,8 +49,8 @@ router.get('/show', (req, res, next) => {
 });
 
 // [POST] TO DELETE THE ADVENTURE
-router.post('/:id/delete', (req, res, next) => {
-    let advId = req.params.id;
+router.post('/delete/:idNota', (req, res, next) => {
+    let advId = req.params.idNota;
     Adventure
         .findByIdAndRemove(advId)
         .then((adv) => {
@@ -57,13 +59,13 @@ router.post('/:id/delete', (req, res, next) => {
                     .status(404)
                     .render('not-found');
             console.log('===> Successful Deletion. <===');
-            res.redirect('/adventures');
+            res.redirect('/adventures/show');
         })
         .catch(next);
 });
 
 // [GET] TO EDIT THE ADVENTURE
-router.get('/:id/edit', (req, res, next) => {
+router.get('/edit/:id', (req, res, next) => {
     let advId = req.params.id;
     if (!advId) 
         return res
@@ -76,7 +78,8 @@ router.get('/:id/edit', (req, res, next) => {
                 return res
                     .status(404)
                     .render('not-found');
-            res.render('adventures/edit', {adv});
+                    console.log(adv);
+            res.render('adventures/new', {user: req.user, adv});
         })
         .catch((err) => {
             console.log(err);
@@ -84,7 +87,7 @@ router.get('/:id/edit', (req, res, next) => {
 });
 
 // [POST] TO EDIT THE USER
-router.post('/:id/edit', (req, res, next) => {
+router.post('/edit/:id', (req, res, next) => {
     const {name, description, date} = req.body;
     let advId = req.params.id;
     Adventure
@@ -98,8 +101,8 @@ router.post('/:id/edit', (req, res, next) => {
             }
         }, {new: true})
         .then((adv) => {
-            console.log(adv.name);
-            res.redirect('/adventures');
+            // console.log(adv);
+            res.redirect('/adventures/show');
         })
         .catch((err) => {
             console.log(err);

@@ -94,11 +94,20 @@ border: none;
     margin: 20px 0 0 0;
     width: 90px;
 }
+.edit span{
+    
+     display: inline-block;
+    float: left;
+        border: solid 1px #add;
+}
 .edit a{
-    margin: 0 0 0 400px;
+    display: inline-block;
+    float: left;
+    margin: 0 10px 0 350px;
     width: 90px;
     // border: solid 1px #add;
 }
+
 textarea {
     background: url("images/ntbk.png") repeat-y;
     backface-visibility: hidden;
@@ -173,15 +182,15 @@ textarea:focus{
     width: 150px;
 }
 
-#form input {
-    // border: 1px solid #43a3e6;
-    margin: 15px 10px 0 20px;
-    box-sizing: border-box;
-    font-size: 14px;
-    outline: 0;
-    padding: 4px;
-    width: 150px;
-}
+// #form input {
+//     // border: 1px solid #43a3e6;
+//     margin: 15px 10px 0 20px;
+//     box-sizing: border-box;
+//     font-size: 14px;
+//     outline: 0;
+//     padding: 4px;
+//     width: 150px;
+// }
 
 .btn {
     margin: 15px 10px 0 80px;

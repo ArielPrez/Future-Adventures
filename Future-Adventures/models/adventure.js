@@ -8,7 +8,7 @@ const adventureSchema = new Schema({
     }, // user id referenced
     name: String,
     description: String,
-    date: Date,
+    date: String,
     // location: ,   ????
 });
 
