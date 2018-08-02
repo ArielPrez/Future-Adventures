@@ -1,8 +1,11 @@
 <div>
     {{#if adv}}
-        <form action="/adventures/edit/{{adv.id}}" method="post">
+        <form
+            action="/adventures/edit/{{adv.id}}"
+            method="post"
+            enctype="multipart/form-data">
         {{else}}
-            <form action="/adventures/new" method="post">
+            <form action="/adventures/new" method="post" enctype="multipart/form-data">
             {{/if}}
             <div class="nameAdv">
                 <label for="">Adventure Name</label>
@@ -30,6 +33,11 @@
             {{/if}}
 
         </div>
+        <div class="imgAdv">
+            <label>Poster</label>
+            <input type="file" name="photo">
+        </div>
+
         <div class="textForm">
             <button class="btn btn-primary" type="submit">[ + ]</button>
         </div>

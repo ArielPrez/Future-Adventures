@@ -9,8 +9,12 @@ const adventureSchema = new Schema({
     name: String,
     description: String,
     date: String,
+    imgName: String,
+    imgPath: String,
+  }, {
+    timestamps: { createdAt: "createdAt", updatedAt: "updatedAt" }
+  });
     // location: ,   ????
-});
 
 let Adventure = mongoose.model('adventures', adventureSchema);
 

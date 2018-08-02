@@ -2,14 +2,18 @@ const express = require('express');
 const router = express.Router();
 const Adventure = require('../models/adventure');
 const ensureLogin = require("connect-ensure-login");
+const uploadCloud = require('../config/cloudinary.js');
+
 
 router.get('/new', (req, res, next) => {
     let userId = req.user;
     res.render('adventures/new', {user: userId});
 });
-router.post('/new', (req, res, next) => {
+router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
     let refname = req.user;
     const {name, description, date} = req.body;
+    const imgPath = req.file.url;
+  const imgName = req.file.originalname;
     if (name === "" || description === "" || date === "") {
         res.render("adventures/new", {
             user: refname,
@@ -17,7 +21,7 @@ router.post('/new', (req, res, next) => {
         });
         return;
     }
-    const newAdventure = new Adventure({refname,name, description, date});
+    const newAdventure = new Adventure({refname,name, description, date,imgName,imgPath});
     newAdventure.save((err) => {
         if (err) 
             res.render('adventures/new', {message: "Something went wrong!"});
@@ -87,8 +91,10 @@ router.get('/edit/:id', (req, res, next) => {
 });
 
 // [POST] TO EDIT THE USER
-router.post('/edit/:id', (req, res, next) => {
+router.post('/edit/:id', uploadCloud.single('photo'), (req, res, next) => {
     const {name, description, date} = req.body;
+    const imgPath = req.file.url;
+  const imgName = req.file.originalname;
     let advId = req.params.id;
     Adventure
         .update({
@@ -97,7 +103,9 @@ router.post('/edit/:id', (req, res, next) => {
             $set: {
                 name,
                 description,
-                date
+                date,
+                imgName,
+                imgPath
             }
         }, {new: true})
         .then((adv) => {
