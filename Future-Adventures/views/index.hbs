@@ -4,8 +4,12 @@
             {{title}}</p>
     </div>
     <div id="notebook">
-      <a href="/adventures/new">
-        <img src="/images/map/12705555-vieille-carte-au-trésor.jpg" alt="">
-      </a>
+        {{#if user}}
+            <a href="/adventures/new">
+                <img src="/images/map/12705555-vieille-carte-au-trésor.jpg" alt="">
+            </a>
+        {{else}}
+            <img src="/images/map/12705555-vieille-carte-au-trésor.jpg" alt="">
+        {{/if}}
     </div>
 </div>

@@ -3,7 +3,7 @@
         Editing: 
         {{user.username}}
     </h2>
-
+<div class="userinput">
     <form action="/users/edit" method="post">
         <label for="">
             Name:
@@ -31,7 +31,7 @@
             placeholder="Password"
             {{!-- es mejor poner placeholder que value para el password porque value te va a dar el password encriptado y te va a salir tremenda linea de simbolos en el cuadro del input --}}>
 
-        <button type="submit">
+        <button class="btn btn-primary" type="submit">
             Edit
         </button>
         {{#if message}}
@@ -40,4 +40,5 @@
             <br>
         {{/if}}
     </form>
+    </div>
 </div>

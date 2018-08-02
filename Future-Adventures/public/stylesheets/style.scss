@@ -153,8 +153,14 @@ textarea:focus{
     display: inline-block;
     float: left;
     height: 90px;
-    width: 300px;
     // border: 1px solid #43a3e6;
+    margin: 15px 10px 0 20px;
+    box-sizing: border-box;
+    outline: 0;
+    padding: 4px;
+    width: 150px;
+    font-size: 18px;
+    line-height: 35px;
 }
 
 #signupdiv .imglogo,
@@ -203,43 +209,12 @@ textarea:focus{
     // border: 1px solid #43a3e6;
 }
 #userprofile {
-    margin: 30px auto;
+    margin: 20px auto;
     width: 380px;
 }
 
-// BOOTSTRAP
-/* Remove the navbar's default margin-bottom and rounded borders */
-.navbar {
-    margin-bottom: 0;
-    border-radius: 0;
+.card{
+    width: 280px;
+    background-color: rgb(233, 230, 230);
 }
 
-/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-.row.content {
-    height: 450px;
-}
-
-/* Set gray background color and 100% height */
-.sidenav {
-    padding-top: 20px;
-    background-color: #f1f1f1;
-    height: 100%;
-}
-
-/* Set black background color, white text and some padding */
-footer {
-    background-color: #555;
-    color: white;
-    padding: 15px;
-}
-
-/* On small screens, set height to 'auto' for sidenav and grid */
-@media screen and (max-width: 767px) {
-    .sidenav {
-        height: auto;
-        padding: 15px;
-    }
-    .row.content {
-        height: auto;
-    }
-}

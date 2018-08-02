@@ -8,9 +8,11 @@
                 <p>{{this.name}}</p>
                 <p>{{this.description}}</p>
                 <p>{{this.date}}</p>
+                <a href="/adventures/edit/{{this.id}}">
                 <button class="btn btn-primary">
-                    <a href="/adventures/edit/{{this.id}}">Edit</a>
+                    Edit
                 </button>
+                </a>
 
                 <form action="/adventures/delete/{{this.id}}" method="post">
                     <input type="submit" value="Delete" class="btn btn-primary">
@@ -22,7 +24,7 @@
 
     </div>
     <div class="textForm">
-        <a href="/adventures/new" class="btn btn-primary">Add</a>
+        <a href="/adventures/new" class="btn btn-primary">Add New</a>
     </div>
 
 </div>
