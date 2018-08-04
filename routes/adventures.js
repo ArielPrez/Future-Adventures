@@ -12,8 +12,8 @@ router.get('/new', (req, res, next) => {
 router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
     let refname = req.user;
     const {name, description, date} = req.body;
-    const imgPath = req.file.url;
-  const imgName = req.file.originalname;
+    //     const imgPath = req.file.url;   const imgName = req.file.originalname;
+
     if (name === "" || description === "" || date === "") {
         res.render("adventures/new", {
             user: refname,
@@ -21,14 +21,35 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
         });
         return;
     }
-    const newAdventure = new Adventure({refname,name, description, date,imgName,imgPath});
-    newAdventure.save((err) => {
-        if (err) 
-            res.render('adventures/new', {message: "Something went wrong!"});
-        else 
-            res.redirect('/adventures/show');
-        }
-    );
+    else if (req.file) {
+        const imgPath = req.file.url;
+        const imgName = req.file.originalname;
+        const newAdventure = new Adventure({
+            refname,
+            name,
+            description,
+            date,
+            imgName,
+            imgPath
+        });
+        newAdventure.save((err) => {
+            if (err) 
+                res.render('adventures/new', {message: "Something went wrong!"});
+            else 
+                res.redirect('/adventures/show');
+            }
+        );
+    } else {
+        const newAdventure = new Adventure({refname, name, description, date});
+        newAdventure.save((err) => {
+            if (err) 
+                res.render('adventures/new', {message: "Something went wrong!"});
+            else 
+                res.redirect('/adventures/show');
+            }
+        );
+    }
+    
 });
 
 // [GET] TO SHOW THE DETAILS OF THE ADVENTURE
