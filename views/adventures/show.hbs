@@ -8,7 +8,7 @@
                 <p>{{this.name}}</p>
                 <p>{{this.description}}</p>
                 <p>{{this.date}}</p>
-                <img src="{{this.imgPath}}" alt="">
+                <img class="photoAdv" src="{{this.imgPath}}" alt="">
                 <a href="/adventures/edit/{{this.id}}">
                 <button class="btn btn-primary">
                     Edit
@@ -29,3 +29,62 @@
     </div>
 
 </div>
+
+
+
+{{!-- basicamente esta chequeando si hay una imagen, si la hay hace el update normal, si no hace el update sin declarar ni guardar la imagen (ambos te pueden dar errores si no hay imagen) --}}
+
+{{!-- router.post("/addHousing", uploadCloud.single('photo'), (req, res, next) => {
+
+   const { title, price, motive, state, pets, laundry, available, description } = req.body;
+
+   if (req.file) {
+      const imagePath = req.file.url;
+      const imageName = req.file.originalname;
+
+      const ownerOfPost = req.user._id;
+      const newHouse = new HOUSING({title, price, motive, state, ownerOfPost, pets, laundry, available, description, imagePath, imageName });
+      
+      req.user.classifieds.push(newHouse);
+      const classifieds = req.user.classifieds;
+
+      newHouse.save((err) => {
+        if (err) 
+          {
+          res.render("houses/addHouse", { message: "Something went wrong" });
+          } 
+        else 
+          {
+            User.update({_id: ownerOfPost}, { $set: { classifieds }},{new: true})
+            .then((e) => {
+                res.redirect('/');
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+          }
+      });
+  }
+    else {
+            const ownerOfPost = req.user._id;
+            const newHouse = new HOUSING({title, price, motive, state, ownerOfPost, pets, laundry, available, description});
+            
+            req.user.classifieds.push(newHouse);
+            const classifieds = req.user.classifieds;
+
+          newHouse.save((err) => {
+              if (err) {
+                res.render("houses/addHouse", { message: "Something went wrong" });
+              } 
+              else {
+                  User.update({_id: ownerOfPost}, { $set: { classifieds }},{new: true})
+                  .then((e) => {
+                      res.redirect('/');
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              }
+       });
+    }
+ }); --}}
