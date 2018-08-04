@@ -99,7 +99,7 @@ img {
   width: 90px; }
 
 textarea {
-  background: url("images/ntbk.png") repeat-y;
+  background: url("https://res.cloudinary.com/aprez85/image/upload/v1533352726/future-adventures/ntbk.png") repeat-y;
   backface-visibility: hidden;
   width: 580px;
   height: 450px;
