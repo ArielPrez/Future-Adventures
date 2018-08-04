@@ -12,7 +12,6 @@ router.get('/new', (req, res, next) => {
 router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
     let refname = req.user;
     const {name, description, date} = req.body;
-    //     const imgPath = req.file.url;   const imgName = req.file.originalname;
 
     if (name === "" || description === "" || date === "") {
         res.render("adventures/new", {
@@ -37,10 +36,18 @@ router.post('/new', uploadCloud.single('photo'), (req, res, next) => {
                 res.render('adventures/new', {message: "Something went wrong!"});
             else 
                 res.redirect('/adventures/show');
-            }
-        );
-    } else {
-        const newAdventure = new Adventure({refname, name, description, date});
+            });
+
+    } 
+    
+    else if (!req.file) {
+        const newAdventure = new Adventure({
+            refname, 
+            name, 
+            description, 
+            date
+        });
+
         newAdventure.save((err) => {
             if (err) 
                 res.render('adventures/new', {message: "Something went wrong!"});
@@ -113,9 +120,23 @@ router.get('/edit/:id', (req, res, next) => {
 
 // [POST] TO EDIT THE USER
 router.post('/edit/:id', uploadCloud.single('photo'), (req, res, next) => {
+    let refname = req.user;
     const {name, description, date} = req.body;
-    const imgPath = req.file.url;
-  const imgName = req.file.originalname;
+
+    if (name === "" || description === "" || date === "") {
+        res.render("adventures/new", {
+            user: refname,
+            message: "Please fill all inputs"
+        });
+        return;
+    }
+    else if (req.file) {
+        const imgPath = req.file.url;
+        const imgName = req.file.originalname;
+    
+//     const {name, description, date} = req.body;
+//     const imgPath = req.file.url;
+//   const imgName = req.file.originalname;
     let advId = req.params.id;
     Adventure
         .update({
@@ -136,6 +157,27 @@ router.post('/edit/:id', uploadCloud.single('photo'), (req, res, next) => {
         .catch((err) => {
             console.log(err);
         });
+    } 
+    else if (!req.file) {
+        let advId = req.params.id;
+        Adventure
+            .update({
+                _id: advId
+            }, {
+                $set: {
+                    name,
+                    description,
+                    date
+                }
+            }, {new: true})
+            .then((adv) => {
+                // console.log(adv);
+                res.redirect('/adventures/show');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }
 });
 
 module.exports = router;
